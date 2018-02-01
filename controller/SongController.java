@@ -11,9 +11,9 @@ public class SongController {
 	@FXML
 	private TableView<Song> songTable;
 	@FXML
-	private TableColumn<Song,String> nameColumn;
+	private TableColumn<Song, String> nameColumn;
 	@FXML
-	private TableColumn<Song,String> artistColumn;
+	private TableColumn<Song, String> artistColumn;
 	@FXML
 	private Text Nametext;
 	@FXML
@@ -22,12 +22,19 @@ public class SongController {
 	private Text Albumtext;
 	@FXML
 	private Text Yeartext;
-	
-	//Reference to the main application
+
+	// Reference to the main application
 	private MainApp mainApp;
-	
 
+	@FXML
+	private void initialize() {
+		nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameproperty());
+		artistColumn.setCellValueFactory(cellData -> cellData.getValue().artistproperty());
+	}
 
-
+	public void setMainAPP(MainApp mainApp) {
+		this.mainApp = mainApp;
+		songTable.setItems(mainApp.getsongData());
+	}
 
 }
